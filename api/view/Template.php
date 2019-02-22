@@ -18,6 +18,11 @@ class Template
         return require __DIR__.'/cliente_listagem.php';
     }
     
+    public static function getLancamento(array $grupos)
+    {
+        return require __DIR__.'/form_lancamento.php';
+    }
+    
     public static function footer()
     {
         return require __DIR__.'/footer.php';
