@@ -18,7 +18,7 @@ class Template
         return require __DIR__.'/cliente_listagem.php';
     }
     
-    public static function getLancamento(array $grupos)
+    public static function getLancamento(array $grupos, array $pagamentos)
     {
         return require __DIR__.'/form_lancamento.php';
     }

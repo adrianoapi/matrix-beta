@@ -12,23 +12,34 @@
             
             $select_grupo = NULL;
             foreach($grupos as $grupo):
-                $select_grupo .= "<option value=\"{$grupo['id']}\">".$grupo['cod']." - ".utf8_encode($grupo['titulo'])."</option>";
+                $select_grupo .= "<option value=\"{$grupo['id']}\">".strtoupper($grupo['cod'])." - ".utf8_encode($grupo['titulo'])."</option>";
+            endforeach;
+            
+            $select_pagamento = NULL;
+            foreach($pagamentos as $pagamento):
+                $select_pagamento .= "<option value=\"{$pagamento['id']}\">".strtoupper($pagamento['cod'])." - ".utf8_encode($pagamento['titulo'])."</option>";
             endforeach;
             
             ?>
             
             <form name="frm_cadastro" id="frm_cadastro" method="post" onsubmit="return false">
-                <input type="hidden" name="action" value="save_cliente">
+                <input type="hidden" name="action" value="save_lancamento">
                 <input type="hidden" name="id" id="id" value="">
                 <div class="form-row">
                     <div class="col">
                         <select name="grupo" class="form-control"><?=$select_grupo;?></select>
                     </div>
                     <div class="col">
-                        <input class="form-control" type="text" name="nome" id="nome" value="" placeholder="nome">
+                        <input class="form-control" type="text" name="descricao" id="descricao" value="" placeholder="nome">
                     </div>
                     <div class="col">
-                        <input class="form-control" type="text" name="email" id="email" value="" placeholder="email">
+                        <input class="form-control" type="text" name="valor" id="valor" value="" placeholder="email">
+                    </div>
+                    <div class="col">
+                        <input class="form-control" type="text" name="senha" id="senha" value="" placeholder="email">
+                    </div>
+                    <div class="col">
+                        <select name="lancamento" class="form-control"><?=$select_pagamento;?></select>
                     </div>
                     <div class="col">
                         <input type="submit" class="btn btn-primary" value="Salvar">
