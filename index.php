@@ -9,9 +9,11 @@ require_once 'Helper.php';
 $db            = new Conn("localhost", "matrix", "root", "");
 $lancamento    = new Lancamento();
 $grupo         = new Grupo();
+$pagamento     = new Pagamento();
 
 $objLancamento = new ServiceLancamento($db, $lancamento);
 $objGrupo      = new ServiceGrupo($db, $grupo);
+$objPagamento  = new ServicePagamento($db, $pagamento);
 
 /*
  * Add controller CRUD
@@ -44,7 +46,7 @@ if($_POST != NULL){
 }else{
     
     Template::header();
-    Template::getFormLancamento($objGrupo->show());
+    Template::getFormLancamento($objGrupo->show(), $objPagamento->show());
     Template::getLancamento($objLancamento->show());
     Template::footer();
     

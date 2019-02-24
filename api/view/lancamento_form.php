@@ -5,6 +5,11 @@ foreach ($grupos as $value):
     $select_grupo .= "<option value=\"{$value['id']}\">".utf8_encode($value['titulo'])."</option>";
 endforeach;
 
+$select_pagamento = null;
+foreach ($pagamentos as $value):
+    $select_pagamento .= "<option value=\"{$value['id']}\">".utf8_encode($value['titulo'])."</option>";
+endforeach;
+
 ?>
 
 
@@ -35,7 +40,7 @@ endforeach;
                         <input class="form-control" type="text" name="valor" id="valor" value="10.00" placeholder="valor">
                     </div>
                     <div class="col">
-                        <input class="form-control" type="text" name="pagamento_id" id="pagamento_id" value="4" placeholder="pagamento">
+                        <select class="form-control" name="pagamento_id" id="pagamento_id"><?=$select_pagamento?></select>
                     </div>
                     <div class="col">
                         <input type="submit" class="btn btn-primary" value="Salvar">

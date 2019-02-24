@@ -1,11 +1,11 @@
 <?php
 
-class Grupo implements IGrupo
+class Pagamento implements IPagamento
 {
 
     private $id;
-    private $grupo_id;
     private $cod;
+    private $tipo;
     private $titulo;
     
     public function getId()
@@ -19,15 +19,6 @@ class Grupo implements IGrupo
         return $this;
     }
 
-    public function getGrupoId(){
-        return $this->grupo_id;
-    }
-
-    public function setGrupoId($grupo_id){
-        $this->grupo_id =  $grupo_id;
-        return $this;
-    }
-
     public function getCod()
     {
         return $this->cod;
@@ -36,6 +27,17 @@ class Grupo implements IGrupo
     public function setCod($cod)
     {
         $this->cod = $cod;
+        return $this;
+    }
+
+    public function getTipo()
+    {
+        return $this->tipo;
+    }
+
+    public function setTipo($tipo)
+    {
+        $this->tipo = $tipo;
         return $this;
     }
 
