@@ -1,0 +1,9 @@
+.anim {  
+  transition: background 1s linear;
+}
+.highlight{
+  background: #dbf2e3; 
+}
+.normal {  
+  background: transparent;  
+}
