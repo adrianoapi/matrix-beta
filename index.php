@@ -19,12 +19,19 @@ $objPagamento  = new ServicePagamento($db, $pagamento);
  * Add controller CRUD
  */
 if($_POST != NULL){
+
+    if($_POST['action'] == 'delete_cliente'){
+        
+        $lancamento->setId($_POST['id']);
+        print $objLancamento->delete();
+        
+    }else{
     
         $lancamento->setId       ($_POST['id'           ])
                 ->setGrupoId     ($_POST['grupo_id'     ])
                 ->setPagamentoId ($_POST['pagamento_id' ])
-                ->setDtLancamento($_POST['dt_lancamento'])
                 ->setValor       ($_POST['valor'        ])
+                ->setDtLancamento(Helper::dataToSql($_POST['dt_lancamento']))
                 ->setDescricao   (utf8_decode($_POST['descricao']));
        
         if($_POST['id'] > 0){
@@ -42,6 +49,7 @@ if($_POST != NULL){
 
             print json_encode($returnHtml);
         }
+    }
    
     
 }elseif($_GET != NULL){

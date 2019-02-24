@@ -28,7 +28,7 @@ endforeach;
                 <input type="hidden" name="id" id="id" value="">
                 <div class="form-row">
                     <div class="col">
-                        <input class="form-control" type="text" name="dt_lancamento" id="dt_lancamento" value="2019-02-23" placeholder="dt_lancamento">
+                        <input class="form-control" type="text" name="dt_lancamento" id="dt_lancamento" value="<?=date('d/m/Y')?>" placeholder="dt_lancamento">
                     </div>
                     <div class="col">
                         <select class="form-control" name="grupo_id" id="grupo_id"><?=$select_grupo?></select>
