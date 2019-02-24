@@ -49,13 +49,13 @@ class ServiceLancamento
      */
     public function save()
     {
-        $query = "INSERT INTO `lancamentos` (`grupo_id`, `pagamento_id`, `dtLancamento`, `valor`, `descricao`) VALUES (:grupo_id, :pagamento_id, :dtLancamento, :valor, :descricao)";
+        $query = "INSERT INTO `lancamentos` (`grupo_id`, `pagamento_id`, `dt_lancamento`, `valor`, `descricao`) VALUES (:grupo_id, :pagamento_id, :dt_lancamento, :valor, :descricao)";
         $stmt  = $this->db->prepare($query);
-        $stmt->bindValue(":grupo_id",      $this->lancamento->getGrupoId());
-        $stmt->bindValue(":pagamento_id",  $this->lancamento->getPagamentoId());
-        $stmt->bindValue(":dtLancamento",  $this->lancamento->getDtLancamento());
-        $stmt->bindValue(":valor",         $this->lancamento->getValor());
-        $stmt->bindValue(":descricao",     $this->lancamento->getDescricao());
+        $stmt->bindValue(":grupo_id",       $this->lancamento->getGrupoId());
+        $stmt->bindValue(":pagamento_id",   $this->lancamento->getPagamentoId());
+        $stmt->bindValue(":dt_lancamento",  $this->lancamento->getDtLancamento(), PDO::PARAM_STR);
+        $stmt->bindValue(":valor",          $this->lancamento->getValor());
+        $stmt->bindValue(":descricao",      $this->lancamento->getDescricao());
         $stmt->execute();
         return $this->db->lastInsertId();
     }

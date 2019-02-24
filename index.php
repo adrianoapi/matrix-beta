@@ -70,10 +70,11 @@ if(isset($_COOKIE['auth'])){
 
                 // Apenas para tratar caracteres especiais
                 $returnHtml = array();
-                foreach($rst[0] as $key => $value):
-                    $returnHtml[$key] = utf8_encode($value);
-                endforeach;
-
+                if(count($rst) > 0){
+                    foreach($rst[0] as $key => $value):
+                        $returnHtml[$key] = utf8_encode($value);
+                    endforeach;
+                }
                 print json_encode($returnHtml);
             }
         }

@@ -2,12 +2,12 @@
 
 $select_grupo = null;
 foreach ($grupos as $value):
-    $select_grupo .= "<option value=\"{$value['id']}\">".utf8_encode($value['titulo'])."</option>";
+    $select_grupo .= "<option value=\"{$value['id']}\">".strtoupper($value['cod'])." - ".utf8_encode($value['titulo'])."</option>";
 endforeach;
 
 $select_pagamento = null;
 foreach ($pagamentos as $value):
-    $select_pagamento .= "<option value=\"{$value['id']}\">".utf8_encode($value['titulo'])."</option>";
+    $select_pagamento .= "<option value=\"{$value['id']}\">".strtoupper($value['cod'])." - ".utf8_encode($value['titulo'])."</option>";
 endforeach;
 
 ?>
@@ -44,7 +44,6 @@ endforeach;
                     </div>
                     <div class="col">
                         <input type="submit" class="btn btn-primary" value="Salvar">
-                        <input type="reset"  class="btn btn-default" value="Limpar" onclick="clear_form()">
                     </div>
                 </div>
             </form>
