@@ -2,9 +2,11 @@
     <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">id</th>
-            <th scope="col">descricao</th>
-            <th scope="col">valor</th>
+            <th scope="col">Data</th>
+            <th scope="col">Grupo</th>
+            <th scope="col">Descrição</th>
+            <th scope="col">Valor</th>
+            <th scope="col">Pgto</th>
             <th scope="col">ACAO</th>
         </tr>
     </thead>
@@ -12,6 +14,7 @@
     <?php foreach($lancamentos as $lancamento): ?>
         <tr>
             <td><input type="checkbox" name="cadastro[]"></td>
+            <td><?= Helper::dataToBr($lancamento['dt_lancamento']) ?></td>
             <td><?= utf8_encode($lancamento['grupo']) ?></td>
             <td>
                 <a href="#" id="<?= $lancamento['id'] ?>" onClick="edit_row(this.id)" alt="clique alterar" title="clique alterar"><?= utf8_encode($lancamento['descricao' ]) ?>
