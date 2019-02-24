@@ -12,9 +12,16 @@
     <?php foreach($lancamentos as $lancamento): ?>
         <tr>
             <td><input type="checkbox" name="cadastro[]"></td>
-            <td><?= $lancamento['id'   ] ?></td>
-            <td><a href="#" id="<?= $lancamento['id'] ?>" onClick="edit_row(this.id)" alt="clique alterar" title="clique alterar"><?= $lancamento['descricao' ] ?></a></td>
-            <td><a href="#" id="<?= $lancamento['id'] ?>" onClick="edit_row(this.id)" alt="clique alterar" title="clique alterar"><?= $lancamento['valor' ] ?></a></td>
+            <td><?= utf8_encode($lancamento['grupo']) ?></td>
+            <td>
+                <a href="#" id="<?= $lancamento['id'] ?>" onClick="edit_row(this.id)" alt="clique alterar" title="clique alterar"><?= utf8_encode($lancamento['descricao' ]) ?>
+                    
+                </a>
+            </td>
+            <td>
+                <a href="#" id="<?= $lancamento['id'] ?>" onClick="edit_row(this.id)" alt="clique alterar" title="clique alterar"><?= $lancamento['valor' ] ?></a>
+            </td>
+            <td><?= utf8_encode($lancamento['pagamento']) ?></td>
             <td>
                 <!--<input type="button" class="btn btn-primary " id="<?= $lancamento['id'] ?>" value="E" onClick="edit_row(this.id)">-->
                 <input type="button" class="btn btn-danger" id="<?= $lancamento['id'] ?>" value="Excluir" onClick="del_row(this.id,this)">

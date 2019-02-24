@@ -24,7 +24,7 @@ endforeach;
             </div>
             
             <form name="frm_cadastro" id="frm_cadastro" method="POST" onsubmit="return false">
-                <input type="hidden" name="action" value="save_cliente">
+                <input type="hidden" name="action" value="save_lancamento">
                 <input type="hidden" name="id" id="id" value="">
                 <div class="form-row">
                     <div class="col">

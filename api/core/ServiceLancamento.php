@@ -16,7 +16,11 @@ class ServiceLancamento
     
     public function find(int $id)
     {
-        $query = "SELECT * FROM `lancamentos` WHERE `id`=:id LIMIT 1";
+        $query = " SELECT la.*, gp.titulo AS grupo, pa.titulo AS pagamento    ".
+                 " FROM       `lancamentos` AS la                             ".
+                 " INNER JOIN `grupos`      AS gp ON (gp.id = la.grupo_id    )".
+                 " INNER JOIN `pagamentos`  AS pa ON (pa.id = la.pagamento_id)".
+                 " WHERE `la`.`id`=:id LIMIT 1";
         $stmt  = $this->db->prepare($query);
         $stmt->bindValue(":id", $id);
         $stmt->execute();
@@ -29,7 +33,11 @@ class ServiceLancamento
      */
     public function show()
     {
-        $query = "SELECT * FROM `lancamentos` ORDER BY id DESC limit 10";
+        $query = " SELECT la.*, gp.titulo AS grupo, pa.titulo AS pagamento    ".
+                 " FROM       `lancamentos` AS la                             ".
+                 " INNER JOIN `grupos`      AS gp ON (gp.id = la.grupo_id    )".
+                 " INNER JOIN `pagamentos`  AS pa ON (pa.id = la.pagamento_id)".
+                 " ORDER BY la.id DESC limit 10";
         $stmt  = $this->db->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);

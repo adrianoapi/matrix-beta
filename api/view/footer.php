@@ -26,19 +26,22 @@
                url:  "./",
                data: dados,
                success: function(data){
-                   
+
                    if(data.length > 1){
                        
                        var obj       = JSON.parse(data);
                        var id        = obj['id'       ];
                        var valor     = obj['valor'    ];
+                       var grupo     = obj['grupo'    ];
+                       var pagamento = obj['pagamento'];
                        var descricao = obj['descricao'];
                        
                        // Incrementa uma nova linha na tabela
                        $('<tr class="anim highlight"><td><input type="checkbox" name="cadastro[]"></td>' +
-                           '<td>' + id    + '</td>' +
+                           '<td>' + grupo    + '</td>' +
                            '<td><a href="javascript:void(0)" id="' + id + '" onClick="edit_row(this.id)" alt="clique alterar" title="clique alterar">' + descricao + '</a></td>' +
                            '<td>' + valor + '</td>' +
+                           '<td>' + pagamento + '</td>' +
                            '<td><input type="button" class="btnDelete btn btn-danger" id="' + id + '" onClick="del_row(this.id,this)" value="Excluir"></td></tr>')
                         .hide()
                         .prependTo('#lista_clientes > tbody')

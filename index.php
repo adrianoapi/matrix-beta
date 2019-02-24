@@ -18,7 +18,6 @@ $objPagamento  = new ServicePagamento($db, $pagamento);
 /*
  * Add controller CRUD
  */
-
 if($_POST != NULL){
     
         $lancamento->setId       ($_POST['id'           ])
@@ -26,7 +25,7 @@ if($_POST != NULL){
                 ->setPagamentoId ($_POST['pagamento_id' ])
                 ->setDtLancamento($_POST['dt_lancamento'])
                 ->setValor       ($_POST['valor'        ])
-                ->setDescricao   ($_POST['descricao'    ]);
+                ->setDescricao   (utf8_decode($_POST['descricao']));
        
         if($_POST['id'] > 0){
             print $objLancamento->update();
@@ -34,7 +33,14 @@ if($_POST != NULL){
         }else{
             $id  = $objLancamento->save();
             $rst = $objLancamento->find($id);
-            print json_encode($rst[0]);
+
+            // Apenas para tratar caracteres especiais
+            $returnHtml = array();
+            foreach($rst[0] as $key => $value):
+                $returnHtml[$key] = utf8_encode($value);
+            endforeach;
+
+            print json_encode($returnHtml);
         }
    
     
