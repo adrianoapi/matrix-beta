@@ -1,3 +1,13 @@
+<?php
+
+$select_grupo = null;
+foreach ($grupos as $value):
+    $select_grupo .= "<option value=\"{$value['id']}\">".utf8_encode($value['titulo'])."</option>";
+endforeach;
+
+?>
+
+
 <!--Mensagem de erro-->
             <div id="msg-erro" class="col-lg-12 alert alert-danger" style="display: none;">
                 mensagem
@@ -16,7 +26,7 @@
                         <input class="form-control" type="text" name="dt_lancamento" id="dt_lancamento" value="2019-02-23" placeholder="dt_lancamento">
                     </div>
                     <div class="col">
-                        <input class="form-control" type="text" name="grupo_id" id="grupo_id" value="48" placeholder="grupo">
+                        <select class="form-control" name="grupo_id" id="grupo_id"><?=$select_grupo?></select>
                     </div>
                     <div class="col">
                         <input class="form-control" type="text" name="descricao" id="descricao" value="teste" placeholder="descricao">

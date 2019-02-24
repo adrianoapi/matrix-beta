@@ -8,7 +8,7 @@ class Template
         return require __DIR__.'/header.php';
     }
     
-    public static function getFormLancamento()
+    public static function getFormLancamento(array $grupos)
     {
         return require __DIR__.'/lancamento_form.php';
     }
