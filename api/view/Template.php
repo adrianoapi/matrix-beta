@@ -18,7 +18,7 @@ class Template
         return require __DIR__.'/lancamento_form.php';
     }
     
-    public static function getLancamento(array $lancamentos)
+    public static function getLancamento(array $lancamentos, $receita, $despesa)
     {
         return require __DIR__.'/lancamento_listagem.php';
     }

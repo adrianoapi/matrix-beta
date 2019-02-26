@@ -87,9 +87,12 @@ if(isset($_COOKIE['auth'])){
         
     }else{
         
+        $receita = $objLancamento->valor("E");
+        $despesa = $objLancamento->valor("S");
+        
         Template::header();
         Template::getFormLancamento($objGrupo->show(), $objPagamento->show());
-        Template::getLancamento($objLancamento->show());
+        Template::getLancamento($objLancamento->show(), $receita, $despesa);
         Template::footer();
         
     }

@@ -11,6 +11,11 @@
         </tr>
     </thead>
     <tbody>
+        <tr>
+            <td colspan="2">Receita: <?= number_format($receita[0]['total'], 2, ',', '') ?></td>
+            <td colspan="2">Despesa: <?= number_format($despesa[0]['total'], 2, ',', '') ?></td>
+            <td colspan="3">Total:   <?= number_format($receita[0]['total'] - $despesa[0]['total'], 2, ',', '') ?></td>
+        </tr>
     <?php foreach($lancamentos as $lancamento): ?>
         <tr>
             <td><input type="checkbox" name="cadastro[]"></td>
