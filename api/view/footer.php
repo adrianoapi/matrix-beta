@@ -35,12 +35,14 @@
                        var grupo     = obj['grupo'    ];
                        var pagamento = obj['pagamento'];
                        var descricao = obj['descricao'];
+                       var date      = obj['dt_lancamento'];
                        
                        // Incrementa uma nova linha na tabela
                        $('<tr class="anim highlight"><td><input type="checkbox" name="cadastro[]"></td>' +
-                           '<td>' + grupo    + '</td>' +
-                           '<td><a href="javascript:void(0)" id="' + id + '" onClick="edit_row(this.id)" alt="clique alterar" title="clique alterar">' + descricao + '</a></td>' +
-                           '<td>' + valor + '</td>' +
+                           '<td>' + date      + '</td>' +
+                           '<td>' + grupo     + '</td>' +
+                           '<td>' + descricao + '</td>' +
+                           '<td>' + valor     + '</td>' +
                            '<td>' + pagamento + '</td>' +
                            '<td><input type="button" class="btnDelete btn btn-danger" id="' + id + '" onClick="del_row(this.id,this)" value="Excluir"></td></tr>')
                         .hide()

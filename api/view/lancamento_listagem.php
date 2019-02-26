@@ -16,14 +16,8 @@
             <td><input type="checkbox" name="cadastro[]"></td>
             <td><?= Helper::dataToBr($lancamento['dt_lancamento']) ?></td>
             <td><?= utf8_encode($lancamento['grupo']) ?></td>
-            <td>
-                <a href="#" id="<?= $lancamento['id'] ?>" onClick="edit_row(this.id)" alt="clique alterar" title="clique alterar"><?= utf8_encode($lancamento['descricao' ]) ?>
-                    
-                </a>
-            </td>
-            <td>
-                <a href="#" id="<?= $lancamento['id'] ?>" onClick="edit_row(this.id)" alt="clique alterar" title="clique alterar"><?= $lancamento['valor' ] ?></a>
-            </td>
+            <td><?= utf8_encode($lancamento['descricao' ]) ?></td>
+            <td><?= $lancamento['valor' ] ?></td>
             <td><?= utf8_encode($lancamento['pagamento']) ?></td>
             <td>
                 <!--<input type="button" class="btn btn-primary " id="<?= $lancamento['id'] ?>" value="E" onClick="edit_row(this.id)">-->
