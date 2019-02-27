@@ -18,6 +18,8 @@ $objGrupo      = new ServiceGrupo($db, $grupo);
 $objPagamento  = new ServicePagamento($db, $pagamento);
 
 $visible = FALSE;
+$receita = $objLancamento->valor("E");
+$despesa = $objLancamento->valor("S");
 
 if(!isset($_COOKIE['auth'])){
     if($_POST != NULL){
@@ -29,7 +31,7 @@ if(!isset($_COOKIE['auth'])){
             $visible = TRUE;
             Template::header();
             Template::getFormLancamento($objGrupo->show(), $objPagamento->show());
-            Template::getLancamento($objLancamento->show());
+            Template::getLancamento($objLancamento->show(), $receita, $despesa);
             Template::footer();
         }
     }
@@ -86,9 +88,6 @@ if(isset($_COOKIE['auth'])){
         echo json_encode($rst[0]);
         
     }else{
-        
-        $receita = $objLancamento->valor("E");
-        $despesa = $objLancamento->valor("S");
         
         Template::header();
         Template::getFormLancamento($objGrupo->show(), $objPagamento->show());
