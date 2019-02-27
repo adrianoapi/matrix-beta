@@ -98,5 +98,17 @@ class ServiceLancamento
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
+	
+	public function graficoDebito()
+	{
+		$query =" SELECT    DATE(dt_lancamento) as DATE, SUM(CASE WHEN pagamento_id != 5 THEN 1 ELSE 0 END) AS Total".
+				" FROM      `lancamentos`".
+				" GROUP BY  DATE(dt_lancamento)".
+				" ORDER BY dt_lancamento DESC".
+				" LIMIT 5";
+		$stmt  = $this->db->prepare($query);
+        $stmt->execute();
+		return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+	}
     
 }

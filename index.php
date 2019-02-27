@@ -20,6 +20,7 @@ $objPagamento  = new ServicePagamento($db, $pagamento);
 $visible = FALSE;
 $receita = $objLancamento->valor("E");
 $despesa = $objLancamento->valor("S");
+$graDesp = $objLancamento->graficoDebito();
 
 if(!isset($_COOKIE['auth'])){
     if($_POST != NULL){
@@ -90,6 +91,7 @@ if(isset($_COOKIE['auth'])){
     }else{
         
         Template::header();
+		#print_r($graDesp);
         Template::getFormLancamento($objGrupo->show(), $objPagamento->show());
         Template::getLancamento($objLancamento->show(), $receita, $despesa);
         Template::footer();
