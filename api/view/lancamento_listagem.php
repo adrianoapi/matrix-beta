@@ -1,4 +1,71 @@
 <div class="row">
+                          <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                              <div class="card-header card-header-success card-header-icon">
+                                <div class="card-icon">
+                                  <i class="material-icons">add_circle</i>
+                                </div>
+                                <p class="card-category">Receita</p>
+                                <h3 class="card-title">R$ <?= number_format($receita[0]['total'], 2, ',', '.') ?></h3>
+                              </div>
+                              <div class="card-footer">
+                                <div class="stats">
+                                  <i class="material-icons text-danger">warning</i>
+                                  <a href="#pablo">Get More Space...</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                              <div class="card-header card-header-warning card-header-icon">
+                                <div class="card-icon">
+                                  <i class="material-icons">payment</i>
+                                </div>
+                                <p class="card-category">Despesa</p>
+                                <h3 class="card-title">R$ <?= number_format($despesa[0]['total'], 2, ',', '.') ?></h3>
+                              </div>
+                              <div class="card-footer">
+                                <div class="stats">
+                                  <i class="material-icons">local_offer</i> Tracked from Google Analytics
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                              <div class="card-header card-header-rose card-header-icon">
+                                <div class="card-icon">
+                                  <i class="material-icons">swap_horiz</i>
+                                </div>
+                                <p class="card-category">Fluxo</p>
+                                <h3 class="card-title">R$ <?= number_format($receita[0]['total'] - $despesa[0]['total'], 2, ',', '.') ?></h3>
+                              </div>
+                              <div class="card-footer">
+                                <div class="stats">
+                                  <i class="material-icons">date_range</i> Last 24 Hours
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                              <div class="card-header card-header-danger card-header-icon">
+                                <div class="card-icon">
+                                  <i class="material-icons">save_alt</i>
+                                </div>
+                                <p class="card-category">Perspectiva</p>
+                                <h3 class="card-title">R$ <?= number_format($despesa[0]['total'] - 5400, 2, ',', '.') ?></h3>
+                              </div>
+                              <div class="card-footer">
+                                <div class="stats">
+                                  <i class="material-icons">update</i> Just Updated
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+		<div class="row">
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-primary">
@@ -21,11 +88,6 @@
                         </thead>
                       </thead>
                       <tbody>
-                        <tr>
-                            <td colspan="2">Receita: <?= number_format($receita[0]['total'], 2, ',', '') ?></td>
-                            <td colspan="2">Despesa: <?= number_format($despesa[0]['total'], 2, ',', '') ?></td>
-                            <td colspan="3">Total:   <?= number_format($receita[0]['total'] - $despesa[0]['total'], 2, ',', '') ?></td>
-                        </tr>
                         <?php 
                             foreach($lancamentos as $lancamento):
 
