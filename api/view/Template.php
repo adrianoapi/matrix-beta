@@ -3,7 +3,7 @@
 class Template
 {
     
-    public static function header()
+    public static function header(array $despesas)
     {
         return require __DIR__.'/header.php';
     }

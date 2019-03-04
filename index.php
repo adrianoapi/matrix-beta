@@ -6,16 +6,18 @@ require_once 'Helper.php';
 /**
  * Instanciamento de classes
  */
-$db            = new Conn("localhost", "matrix", "root", "");
-$login         = new Login();
-$lancamento    = new Lancamento();
-$grupo         = new Grupo();
-$pagamento     = new Pagamento();
+$db             = new Conn("localhost", "matrix", "root", "");
+$login          = new Login();
+$lancamento     = new Lancamento();
+$grupo          = new Grupo();
+$pagamento      = new Pagamento();
+$lancamentoFixo = new LancamentoFixo();
 
-$bojLogin      = new ServiceLogin($db, $login);
-$objLancamento = new ServiceLancamento($db, $lancamento);
-$objGrupo      = new ServiceGrupo($db, $grupo);
-$objPagamento  = new ServicePagamento($db, $pagamento);
+$bojLogin          = new ServiceLogin($db, $login);
+$objLancamento     = new ServiceLancamento($db, $lancamento);
+$objGrupo          = new ServiceGrupo($db, $grupo);
+$objPagamento      = new ServicePagamento($db, $pagamento);
+$objLancamentoFixo = new ServiceLancamentoFixo($db, $lancamentoFixo);
 
 $visible = FALSE;
 $receita = $objLancamento->valor("E");
@@ -30,14 +32,14 @@ if(!isset($_COOKIE['auth'])){
         if($bojLogin->autenticar()){
             setcookie("auth", true, time()+3600); 
             $visible = TRUE;
-            Template::header();
+            Template::header($objLancamentoFixo->show());
             Template::getFormLancamento($objGrupo->show(), $objPagamento->show());
             Template::getLancamento($objLancamento->show(), $receita, $despesa);
             Template::footer();
         }
     }
     if($visible === FALSE){
-        Template::header();
+        Template::header(array());
         Template::getFormLogin();
         Template::footer(); 
     }
@@ -90,8 +92,7 @@ if(isset($_COOKIE['auth'])){
         
     }else{
         
-        Template::header();
-		#print_r($graDesp);
+        Template::header($objLancamentoFixo->show());
         Template::getFormLancamento($objGrupo->show(), $objPagamento->show());
         Template::getLancamento($objLancamento->show(), $receita, $despesa);
         Template::footer();

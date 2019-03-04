@@ -35,7 +35,21 @@
               <p>Dashboard</p>
             </a>
           </li>
-          <!-- your sidebar here -->
+          <li class="nav-item active  ">
+            <a class="nav-link" href="javascript:void(0)">
+              <i class="material-icons">Despesas</i>
+              <p>Despesas fixas</p>
+            </a>
+          </li>
+          <?php
+          
+          $totoal = 0;
+          foreach($despesas as $despesa):
+            echo "<li>&nbsp;".$despesa['descricao']." - R$ ".$despesa['valor']."</li>";
+            $totoal += $despesa['valor'];
+          endforeach;
+          echo "<p>&nbsp;R$ {$totoal}</p>";
+          ?>
         </ul>
       </div>
     </div>
