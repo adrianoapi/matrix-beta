@@ -119,7 +119,7 @@ endforeach;
                         <div class="card-body">
                             <div class="media">
                                 <div class="media-body">
-                                    <table class="table table-striped">
+                                    <table class="table table-hover">
                                         <thead class=" text-primary">
                                         <thead>
                                             <tr>
