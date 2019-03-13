@@ -119,7 +119,7 @@ endforeach;
                         <div class="card-body">
                             <div class="media">
                                 <div class="media-body">
-                                    <table class="table">
+                                    <table class="table table-striped">
                                         <thead class=" text-primary">
                                         <thead>
                                             <tr>
@@ -178,8 +178,9 @@ endforeach;
             <!-- ============================================================== -->
        
         </div>
-       
+        
         <?php include_once 'api/view/footer.php';?>
+        <?php include_once 'api/view/botton.php';?>
         
     </div>
 </div>
