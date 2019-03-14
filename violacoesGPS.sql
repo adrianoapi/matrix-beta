@@ -1,4 +1,7 @@
-SELECT     s.dispositivo_status_voltagem_bateria AS bateria, 
+--112@##lUCzbOr3snWTJ4REb55V&H(tMqmAMr2T#a#$@
+update chronos.tb_dispositivo_status set pacote_status_12 = 'Y' where dispositivo_id = 4306;
+
+SELECT     s.pacote_status_12, s.dispositivo_status_voltagem_bateria AS bateria, 
            md.modelo_dispositivo_id, 
            da.dispositivo_id, 
            pe.pessoa_id, 
