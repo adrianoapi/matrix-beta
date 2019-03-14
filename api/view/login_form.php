@@ -30,6 +30,6 @@
         </div>
     </div>    
        
-        <?php include_once 'api/view/button.php';?>
+        <?php #include_once 'api/view/button.php';?>
 
 
