@@ -73,9 +73,10 @@
                 
                    if(data.length > 1){
 
-                       var obj = JSON.parse(data);
-                       
-                       for(var i=0;i<=obj.length;i++){
+                       var obj   = JSON.parse(data);
+                       var total = 0;
+                       for(var i=0;i < obj.length;i++){
+                           total += parseInt(obj[i]['valor']);
                            $('<tr class="anim highlight">'  +
                            '<td>' + obj[i]['dt_lancamento'] + '</td>' +
                            '<td>' + obj[i]['descricao'    ] + '</td>' +
@@ -83,6 +84,8 @@
                            '</tr>')
                             .prependTo('#table_pesquisa > tbody');
                        }
+                       
+                        $('<tr class="anim highlight"><td colspan="2">Total R$: ' + total + '</td></tr>').prependTo('#table_pesquisa > tbody');
                        
                      }else{
                        //location.reload();
