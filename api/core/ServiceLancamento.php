@@ -44,6 +44,27 @@ class ServiceLancamento
     }
     
     /**
+     * Pesquisar lancamenots
+     * @return type
+     */
+    public function pesquisar()
+    {
+        $query = " SELECT la.*, gp.titulo AS grupo, pa.titulo AS pagamento    ".
+                 " FROM       `lancamentos` AS la                             ".
+                 " INNER JOIN `grupos`      AS gp ON (gp.id = la.grupo_id    )".
+                 " INNER JOIN `pagamentos`  AS pa ON (pa.id = la.pagamento_id)".
+                 " WHERE la.grupo_id = :grupo_id AND la.pagamento_id = :pagamento_id AND la.dt_lancamento >= :dt_inicio AND la.dt_lancamento <= :dt_fim".
+                 " ORDER BY la.id DESC";
+        $stmt  = $this->db->prepare($query);
+        $stmt->bindValue(":grupo_id",       $this->lancamento->getGrupoId());
+        $stmt->bindValue(":pagamento_id",   $this->lancamento->getPagamentoId());
+        $stmt->bindValue(":dt_inicio",      $this->lancamento->getDtInicio(), PDO::PARAM_STR);
+        $stmt->bindValue(":dt_fim",         $this->lancamento->getDtFim(), PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+    
+    /**
      * Insere registro na tabela
      * @return type
      */

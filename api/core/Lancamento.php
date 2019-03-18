@@ -9,6 +9,8 @@ class Lancamento implements ILancamento
     private $dt_lancamento;
     private $valor;
     private $descricao;
+    private $dt_inicio;
+    private $dt_fim;
     
     public function getId()
     {
@@ -71,6 +73,28 @@ class Lancamento implements ILancamento
     public function setDescricao($descricao)
     {
         $this->descricao = $descricao;
+        return $this;
+    }
+    
+    public function getDtInicio()
+    {
+        return $this->dt_inicio;
+    }
+    
+    public function setDtInicio($dt_inicio)
+    {
+        $this->dt_inicio = $dt_inicio;
+        return $this;
+    }
+    
+    public function getDtFim()
+    {
+        return $this->dt_fim;
+    }
+    
+    public function setDtFim($dt_fim)
+    {
+        $this->dt_fim = $dt_fim;
         return $this;
     }
     

@@ -1,5 +1,5 @@
 <script>
-        jQuery(document).ready(function(){
+        $(document).ready(function() {
         // Cadastrar
         jQuery('#frm_cadastro').submit(function(){
            document.getElementById('msg-erro').style.display = "none";
@@ -61,7 +61,38 @@
                }
            });
         });
+        
+        jQuery('#frm_pesquisa').submit(function(){
+           $('#table_pesquisa > tbody tr').remove();
+           var dados     = jQuery(this).serialize();
+           jQuery.ajax({
+               type: "POST",
+               url:  "./",
+               data: dados,
+               success: function(data){
+                
+                   if(data.length > 1){
+
+                       var obj = JSON.parse(data);
+                       
+                       for(var i=0;i<=obj.length;i++){
+                           $('<tr class="anim highlight">'  +
+                           '<td>' + obj[i]['dt_lancamento'] + '</td>' +
+                           '<td>' + obj[i]['descricao'    ] + '</td>' +
+                           '<td>' + obj[i]['valor'        ] + '</td>' +
+                           '</tr>')
+                            .prependTo('#table_pesquisa > tbody');
+                       }
+                       
+                     }else{
+                       //location.reload();
+                   }
+               }
+           });
+        });
+        
     });
+    
     // Limpar
     function clear_form(){
         document.getElementById("id").value = 0;

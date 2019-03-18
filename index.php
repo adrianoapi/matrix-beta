@@ -14,7 +14,7 @@ require_once 'Helper.php';
 
  */
 
-$db            = new Conn("localhost", "matrix", "root", "");
+$db             = new Conn("localhost", "matrix", "root", "");
 $login          = new Login();
 $lancamento     = new Lancamento();
 $grupo          = new Grupo();
@@ -64,6 +64,23 @@ if(isset($_COOKIE['auth'])){
             $lancamento->setId($_POST['id']);
             print $objLancamento->delete();
             
+        }elseif($_POST['action'] == 'pesquisar'){
+            
+            $lancamento->setGrupoId  ($_POST['grupo_id'     ])
+                    ->setPagamentoId ($_POST['pagamento_id' ])
+                    ->setDtInicio    (Helper::dataToSql($_POST['dt_inicio']))
+                    ->setDtFim       (Helper::dataToSql($_POST['dt_fim']));
+                       
+                // Apenas para tratar caracteres especiais
+                $returnHtml = array();
+                foreach($objLancamento->pesquisar() as $key => $values):
+                    foreach($values as $ind => $value):
+                        $returnHtml[$key][$ind] = utf8_encode($value);
+                    endforeach;
+                endforeach;
+                
+                print json_encode($returnHtml);
+                
         }elseif($_POST['action'] == 'save_lancamento'){
 
             $lancamento->setId       ($_POST['id'           ])
