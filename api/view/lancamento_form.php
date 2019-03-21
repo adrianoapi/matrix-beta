@@ -169,9 +169,9 @@ endforeach;
             <!-- basic media -->
             <!-- ============================================================== -->
             <div class="row">
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
                     <div class="card">
-                        <h5 class="card-header">Registro de lan�amentos</h5>
+                        <h5 class="card-header">Registro de lançamentos</h5>
                         <div class="card-body">
                             <div class="media">
                                 <div class="media-body table-responsive-sm">
@@ -193,19 +193,27 @@ endforeach;
                                                 switch ($lancamento['pagamento_id']) {
                                                     case 5:
                                                         $label = 'success';
+                                                        $posic = 'up';
                                                         break;
                                                     case 1:
                                                         $label = 'primary';
+                                                        $posic = 'down';
                                                         break;
                                                     default:
                                                         $label = 'danger';
+                                                        $posic = 'down';
                                                         break;
                                                 }
                                         ?>
                                             <tr>
                                                 <td><?= substr(Helper::dataToBr($lancamento['dt_lancamento']), 0, 5) ?></td>
                                                 <td><?= utf8_encode($lancamento['grupo']) ?></td>
-                                                <td class="text-<?=$label?>"><?= $lancamento['valor' ] ?></td>
+                                                <td>
+                                                    <span class="icon-circle-small icon-box-xs text-<?=$label?> ml-4 bg-<?=$label?>-light">
+                                                        <i class="fa fa-fw fa-arrow-<?=$posic?>"></i>
+                                                    </span>
+                                                    <span class="ml-1 text-<?=$label?>"><?= $lancamento['valor' ] ?></span>
+                                                </td>
                                                 <td>
                                                     <button class="btn btn-sm btn-outline-light" id="<?= $lancamento['id'] ?>" value="Excluir" onClick="del_row(this.id,this)">
                                                         <i class="far fa-trash-alt"></i>
@@ -230,9 +238,9 @@ endforeach;
             <!-- ============================================================== -->
             <!-- basic media -->
             <!-- ============================================================== -->
-            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
                             <div class="card">
-                                <h5 class="card-header">Striped Table</h5>
+                                <h5 class="card-header">Despesas fixas</h5>
                                 <div class="card-body">
                                     <form name="salvar_lancamento_fixo" id="salvar_lancamento_fixo" method="POST">
                                         <input name="action" type="hidden" value="salvar_lancamento_fixo">
