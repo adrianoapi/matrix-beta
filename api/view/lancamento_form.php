@@ -207,14 +207,15 @@ endforeach;
                                                 <td><?= utf8_encode($lancamento['grupo']) ?></td>
                                                 <td class="text-<?=$label?>"><?= $lancamento['valor' ] ?></td>
                                                 <td>
-                                                    <!--<input type="button" class="btn btn-primary " id="<?= $lancamento['id'] ?>" value="E" onClick="edit_row(this.id)">-->
-                                                    <input type="button" class="btn btn-danger" id="<?= $lancamento['id'] ?>" value="Excluir" onClick="del_row(this.id,this)">
+                                                    <button class="btn btn-sm btn-outline-light" id="<?= $lancamento['id'] ?>" value="Excluir" onClick="del_row(this.id,this)">
+                                                        <i class="far fa-trash-alt"></i>
+                                                    </button>
                                                 </td>
                                             </tr>
                                         <?php endforeach;?>
                                         </tbody>
                                         <tfoot>
-                                            <tr><td colspan="5"><input type="button" class="btn btn-danger" value="Excluir itens"></td></tr>
+                                            <tr><td colspan="5"><input type="button" class="btn btn-danger float-right" value="Excluir itens"></td></tr>
                                         </tfoot>
                                     </table>
                                 </div>
@@ -269,7 +270,7 @@ endforeach;
                                             <?php endforeach;?>
                                             </tbody>
                                             <tfoot>
-                                                <tr><td colspan="3"><input type="submit" class="btn btn-default" value="Salvar"></td></tr>
+                                                <tr><td colspan="3"><input type="submit" class="btn btn-sm btn-outline-light float-right" value="Salvar"></td></tr>
                                             </tfoot>
                                         </table>
                                     </form>
