@@ -36,10 +36,10 @@ if(!isset($_COOKIE['auth'])){
     if($_POST != NULL){
         $login->setLogin($_POST['login'])->setPassword($_POST['password']);
         if($bojLogin->autenticar()){
-            setcookie("auth", true, time()+3600); 
+            setcookie("auth", true, 24 * time()+3600); 
             $visible = TRUE;
             #Template::header($objLancamentoFixo->show());
-            Template::getFormLancamento($objGrupo->show(), $objPagamento->show(), $objLancamento->show());
+            Template::getFormLancamento($objGrupo->show(), $objPagamento->show(), $objLancamento->show(),  $objLancamentoFixo->show());
             #Template::getLancamento($objLancamento->show(), $receita, $despesa);
             #Template::footer();
         }
@@ -64,6 +64,17 @@ if(isset($_COOKIE['auth'])){
             $lancamento->setId($_POST['id']);
             print $objLancamento->delete();
             
+        }elseif($_POST['action'] == 'salvar_lancamento_fixo'){
+            
+            $iPago = array();
+            foreach($_POST['pago'] as $key => $value):
+                array_push($iPago, $key);
+            endforeach;
+            
+           $objLancamentoFixo->updateClear();
+           $objLancamentoFixo->updatePago(implode(",", $iPago));
+           header('Location: ./');
+
         }elseif($_POST['action'] == 'pesquisar'){
             
             $lancamento->setGrupoId  ($_POST['grupo_id'     ])
@@ -115,7 +126,7 @@ if(isset($_COOKIE['auth'])){
 
     }else{
         #Template::header($objLancamentoFixo->show());
-        Template::getFormLancamento($objGrupo->show(), $objPagamento->show(), $objLancamento->show());
+        Template::getFormLancamento($objGrupo->show(), $objPagamento->show(), $objLancamento->show(), $objLancamentoFixo->show());
         #Template::getLancamento($objLancamento->show(), $receita, $despesa);
         #Template::footer();
     }

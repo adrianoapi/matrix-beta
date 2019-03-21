@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Classe para manipulação de dados com o banco
+ * Classe para manipulaï¿½ï¿½o de dados com o banco
  */
 class ServiceLancamentoFixo
 {
@@ -17,6 +17,22 @@ class ServiceLancamentoFixo
     public function show()
     {
         $query = "SELECT * FROM `lancamento_fixo` ORDER BY id DESC";
+        $stmt  = $this->db->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+    
+    public function updatePago($id)
+    {
+        $query = "UPDATE `lancamento_fixo` SET pago = 1 WHERE id IN ({$id})";
+        $stmt  = $this->db->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+    
+    public function updateClear()
+    {
+        $query = "UPDATE `lancamento_fixo` SET pago = 0 WHERE id > 0";
         $stmt  = $this->db->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);

@@ -169,7 +169,7 @@ endforeach;
             <!-- basic media -->
             <!-- ============================================================== -->
             <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
                     <div class="card">
                         <h5 class="card-header">Registro de lan�amentos</h5>
                         <div class="card-body">
@@ -222,7 +222,60 @@ endforeach;
                         </div>
                     </div>
                 </div>
-            </div>
+            <!-- ============================================================== -->
+            <!-- end basic media -->
+            <!-- ============================================================== -->
+            
+            <!-- ============================================================== -->
+            <!-- basic media -->
+            <!-- ============================================================== -->
+            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                            <div class="card">
+                                <h5 class="card-header">Striped Table</h5>
+                                <div class="card-body">
+                                    <form name="salvar_lancamento_fixo" id="salvar_lancamento_fixo" method="POST">
+                                        <input name="action" type="hidden" value="salvar_lancamento_fixo">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Descrição</th>
+                                                    <th scope="col">Valor</th>
+                                                    <th scope="col">Pgto</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            <?php 
+                                                foreach($fixos as $fixo):
+                                                    
+                                                    switch ($fixo['pago']) {
+                                                        case 0:
+                                                            $label = 'primary';
+                                                            break;
+                                                        case 1:
+                                                            $label = 'success';
+                                                            break;
+                                                    }
+                                                
+                                            ?>
+                                                <tr>
+                                                    <td><?= utf8_encode($fixo['descricao']) ?></td>
+                                                    <td class="text-<?=$label?>"><?= $fixo['valor' ] ?></td>
+                                                    <td>
+                                                        <label class="be-checkbox custom-control custom-checkbox">
+                                                            <input type="checkbox" name="pago[<?= $fixo['id' ] ?>]" class="custom-control-input" <?= ($fixo['pago' ]) ? 'checked' : '' ?>><span class="custom-control-label"></span>
+                                                        </label>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach;?>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr><td colspan="3"><input type="submit" class="btn btn-default" value="Salvar"></td></tr>
+                                            </tfoot>
+                                        </table>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
             <!-- ============================================================== -->
             <!-- end basic media -->
             <!-- ============================================================== -->
