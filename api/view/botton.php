@@ -70,7 +70,7 @@
                url:  "./",
                data: dados,
                success: function(data){
-                
+                console.log(data);
                    if(data.length > 1){
 
                        var obj   = JSON.parse(data);

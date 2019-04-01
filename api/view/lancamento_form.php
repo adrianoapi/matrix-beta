@@ -3,7 +3,7 @@
 
 <?php
 
-$select_grupo = null;
+$select_grupo = "<option value=\"\">Selecione...</option>";
 foreach ($grupos as $value):
     $select_grupo .= "<option value=\"{$value['id']}\">".strtoupper($value['cod'])." - ".utf8_encode($value['titulo'])."</option>";
 endforeach;

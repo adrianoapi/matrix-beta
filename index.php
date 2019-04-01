@@ -83,8 +83,9 @@ if(isset($_COOKIE['auth'])){
                     ->setDtFim       (Helper::dataToSql($_POST['dt_fim']));
                        
                 // Apenas para tratar caracteres especiais
+                $pesquisa = $_POST['grupo_id'] > 0 ? $objLancamento->pesquisar() : $objLancamento->pesquisarSemGrupo();
                 $returnHtml = array();
-                foreach($objLancamento->pesquisar() as $key => $values):
+                foreach($pesquisa as $key => $values):
                     foreach($values as $ind => $value):
                         $returnHtml[$key][$ind] = utf8_encode($value);
                     endforeach;
