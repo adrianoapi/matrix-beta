@@ -254,8 +254,9 @@ endforeach;
                                             </thead>
                                             <tbody>
                                             <?php 
+                                                $totla = 0;
                                                 foreach($fixos as $fixo):
-                                                    
+                                                    $totla += $fixo['valor'];
                                                     switch ($fixo['pago']) {
                                                         case 0:
                                                             $label = 'primary';
@@ -278,7 +279,9 @@ endforeach;
                                             <?php endforeach;?>
                                             </tbody>
                                             <tfoot>
-                                                <tr><td colspan="3"><input type="submit" class="btn btn-sm btn-outline-light float-right" value="Salvar"></td></tr>
+                                                <tr>
+                                                    <td>R$ <?= $totla ?></td>
+                                                    <td colspan="2"><input type="submit" class="btn btn-sm btn-outline-light float-right" value="Salvar"></td></tr>
                                             </tfoot>
                                         </table>
                                     </form>
