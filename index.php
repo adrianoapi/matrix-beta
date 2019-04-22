@@ -65,22 +65,23 @@ if(isset($_COOKIE['auth'])){
             print $objLancamento->delete();
             
         }elseif($_POST['action'] == 'salvar_lancamento_fixo'){
-            
-            $iPago = array();
-            foreach($_POST['pago'] as $key => $value):
-                array_push($iPago, $key);
-            endforeach;
-            
-           $objLancamentoFixo->updateClear();
-           $objLancamentoFixo->updatePago(implode(",", $iPago));
+            if(!empty($_POST['pago'])){
+                $iPago = array();
+                foreach($_POST['pago'] as $key => $value):
+                    array_push($iPago, $key);
+                endforeach;
+
+               $objLancamentoFixo->updateClear();
+               $objLancamentoFixo->updatePago(implode(",", $iPago));
+            }
            header('Location: ./');
 
         }elseif($_POST['action'] == 'pesquisar'){
             
-            $lancamento->setGrupoId  ($_POST['grupo_id'     ])
-                    ->setPagamentoId ($_POST['pagamento_id' ])
+            $lancamento->setGrupoId  ($_POST['grupo_id'                   ])
+                    ->setPagamentoId ($_POST['pagamento_id'               ])
                     ->setDtInicio    (Helper::dataToSql($_POST['dt_inicio']))
-                    ->setDtFim       (Helper::dataToSql($_POST['dt_fim']));
+                    ->setDtFim       (Helper::dataToSql($_POST['dt_fim'   ]));
                        
                 // Apenas para tratar caracteres especiais
                 $pesquisa = $_POST['grupo_id'] > 0 ? $objLancamento->pesquisar() : $objLancamento->pesquisarSemGrupo();
