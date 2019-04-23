@@ -20,12 +20,14 @@ $lancamento     = new Lancamento();
 $grupo          = new Grupo();
 $pagamento      = new Pagamento();
 $lancamentoFixo = new LancamentoFixo();
+$nota           = new Nota();
 
 $bojLogin          = new ServiceLogin($db, $login);
 $objLancamento     = new ServiceLancamento($db, $lancamento);
 $objGrupo          = new ServiceGrupo($db, $grupo);
 $objPagamento      = new ServicePagamento($db, $pagamento);
 $objLancamentoFixo = new ServiceLancamentoFixo($db, $lancamentoFixo);
+$objNota           = new NotaService($db, $nota);
 
 $visible = FALSE;
 $receita = $objLancamento->valor("E");
@@ -78,10 +80,10 @@ if(isset($_COOKIE['auth'])){
 
         }elseif($_POST['action'] == 'pesquisar'){
             
-            $lancamento->setGrupoId  ($_POST['grupo_id'                   ])
-                    ->setPagamentoId ($_POST['pagamento_id'               ])
-                    ->setDtInicio    (Helper::dataToSql($_POST['dt_inicio']))
-                    ->setDtFim       (Helper::dataToSql($_POST['dt_fim'   ]));
+            $lancamento->setGrupoId     ($_POST['grupo_id'                   ])
+                       ->setPagamentoId ($_POST['pagamento_id'               ])
+                       ->setDtInicio    (Helper::dataToSql($_POST['dt_inicio']))
+                       ->setDtFim       (Helper::dataToSql($_POST['dt_fim'   ]));
                        
                 // Apenas para tratar caracteres especiais
                 $pesquisa = $_POST['grupo_id'] > 0 ? $objLancamento->pesquisar() : $objLancamento->pesquisarSemGrupo();
@@ -94,6 +96,18 @@ if(isset($_COOKIE['auth'])){
                 
                 print json_encode($returnHtml);
                 
+        }elseif($_POST['action'] == 'save_nota'){
+           
+            $nota->setId    ($_POST['id'    ])
+                 ->setTitulo($_POST['titulo'])
+                 ->setTexto ($_POST['texto' ]);
+            
+            if($_POST['id']){
+                echo $objNota->update();
+            }else{
+                echo $objNota->save();
+            }
+            
         }elseif($_POST['action'] == 'save_lancamento'){
 
             $lancamento->setId       ($_POST['id'           ])
@@ -121,6 +135,18 @@ if(isset($_COOKIE['auth'])){
         }
 
        
+    }elseif($_GET['module']){
+        if($_GET['module'] == 'nota'){
+            if($_GET['action']){
+                if($_GET['action'] == 'view'){
+                    Template::notaListagem($objNota->show());
+                }elseif($_GET['action'] == 'add'){
+                    Template::notaAdicionar($objNota->show());
+                }
+            }else{
+                Template::notaListagem($objNota->show());
+            }
+        }
     }elseif($_GET != NULL){
 
         $rst = $objLancamento->find($_GET['id']);

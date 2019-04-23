@@ -23,6 +23,16 @@ class Template
         return require __DIR__.'/lancamento_listagem.php';
     }
     
+    public static function notaListagem(array $notas)
+    {
+        return require __DIR__.'/nota_listagem.php';
+    }
+    
+    public static function notaAdicionar()
+    {
+        return require __DIR__.'/nota_form.php';
+    }
+    
     public static function footer()
     {
         return require __DIR__.'/footer.php';

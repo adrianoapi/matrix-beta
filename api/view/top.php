@@ -12,6 +12,12 @@
     <link rel="stylesheet" href="template/assets/libs/css/style.css">
     <link rel="stylesheet" href="template/assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
     
+    
+    <link rel="stylesheet" href="template/assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
+    <link rel="stylesheet" href="template/assets/vendor/select2/css/select2.css">
+    <link rel="stylesheet" href="template/assets/vendor/summernote/css/summernote-bs4.css">
+    <link rel="stylesheet" href="template/assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css">
+    
      <!-- Optional JavaScript -->
         <!-- jquery 3.3.1 -->
         <script src="template/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
