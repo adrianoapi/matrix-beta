@@ -35,6 +35,7 @@
                             <div class="card">
                                 <h5 class="card-header">Despesas fixas</h5>
                                 <div class="card-body">
+                                    <a href="?module=nota&action=add" class="btn btn-primary btn-space"><i class="icon s7-mail"></i> Acidionar Nota</a>
                                     <form name="salvar_lancamento_fixo" id="salvar_lancamento_fixo" method="POST">
                                         <input name="action" type="hidden" value="salvar_lancamento_fixo">
                                         <table class="table table-striped">
@@ -42,6 +43,7 @@
                                                 <tr>
                                                     <th scope="col">Título</th>
                                                     <th scope="col">Data</th>
+                                                    <th scope="col">Ação</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -53,6 +55,11 @@
                                                 <tr>
                                                     <td><?= utf8_encode($nota['titulo']) ?></td>
                                                     <td><?= $nota['data_criacao'] ?></td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-light" id="<?= $nota['id'] ?>" value="Excluir" onClick="del_row(this.id,this)">
+                                                            <i class="far fa-trash-alt"></i>
+                                                        </button>
+                                                    </td>
                                                 </tr>
                                             <?php endforeach;?>
                                             </tbody>

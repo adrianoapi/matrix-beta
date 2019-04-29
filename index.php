@@ -9,9 +9,9 @@ require_once 'Helper.php';
 
 
 /**
-
+ *
  * Instanciamento de classes
-
+ *
  */
 
 $db             = new Conn("localhost", "matrix", "root", "");
@@ -105,7 +105,10 @@ if(isset($_COOKIE['auth'])){
             if($_POST['id']){
                 echo $objNota->update();
             }else{
-                echo $objNota->save();
+                if($objNota->save())
+                {
+                    header('Location: ?module=nota');
+                }
             }
             
         }elseif($_POST['action'] == 'save_lancamento'){
