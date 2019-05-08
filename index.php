@@ -67,13 +67,13 @@ if(isset($_COOKIE['auth'])){
             print $objLancamento->delete();
             
         }elseif($_POST['action'] == 'salvar_lancamento_fixo'){
+            $objLancamentoFixo->updateClear();
             if(!empty($_POST['pago'])){
                 $iPago = array();
                 foreach($_POST['pago'] as $key => $value):
                     array_push($iPago, $key);
                 endforeach;
 
-               $objLancamentoFixo->updateClear();
                $objLancamentoFixo->updatePago(implode(",", $iPago));
             }
            header('Location: ./');
