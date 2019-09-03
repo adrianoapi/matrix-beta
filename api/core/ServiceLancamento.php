@@ -14,6 +14,28 @@ class ServiceLancamento
         $this->lancamento = $lancamento;
     }
     
+    public function lucroCalculo()
+    {
+        $query = " SELECT SUM(valor) as total, dt_lancamento ".
+                 " FROM `lancamentos` ".
+                 " WHERE pagamento_id = 5 GROUP BY dt_lancamento order by dt_lancamento DESC ".
+                 " LIMIT 4";
+        $stmt  = $this->db->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+    
+    public function despesasCalculo()
+    {
+        $query = " SELECT SUM(valor) as total, dt_lancamento ".
+                 " FROM `lancamentos` ".
+                 " WHERE pagamento_id = 4 GROUP BY dt_lancamento order by dt_lancamento DESC ".
+                 " LIMIT 20";
+        $stmt  = $this->db->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+    
     public function find(int $id)
     {
         $query = " SELECT la.*, gp.titulo AS grupo, pa.titulo AS pagamento    ".

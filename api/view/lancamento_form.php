@@ -1,7 +1,5 @@
 
-<?php include_once 'api/view/top.php';?>
-
-<?php
+<?php include_once 'api/view/top.php';
 
 $select_grupo = "<option value=\"\">Selecione...</option>";
 foreach ($grupos as $value):
@@ -45,18 +43,58 @@ endforeach;
             <!-- ============================================================== -->
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <?php
+                    
+                    $dtLancamento    = array();
+                    $lancamentoTotal = array();
+                    
+                    $tempDespesas = array();
+                    foreach($despesasCalculo as $value):
+                        $tempDespesas[$value['dt_lancamento']] = $value['total'];
+                        array_push($dtLancamento, $value['dt_lancamento']);
+                    endforeach;
+                    
+                    $tempLucro = array();
+                    foreach($lucroCalculo as $value):
+                        $tempLucro[$value['dt_lancamento']] = $value['total'];
+                        if(!in_array($value['dt_lancamento'], $dtLancamento)){
+                            array_push($dtLancamento, $value['dt_lancamento']);
+                        }
+                    endforeach;
+                    
+                    foreach($dtLancamento as $value):
+                        if(array_key_exists($value, $tempDespesas)){
+                            $lancamentoTotal[$value]['despesa'] = $tempDespesas[$value];
+                        }else{
+                            $lancamentoTotal[$value]['despesa'] = 0;
+                        }
+                        if(array_key_exists($value, $tempLucro)){
+                            $lancamentoTotal[$value]['lucro'] = $tempLucro[$value];
+                        }else{
+                            $lancamentoTotal[$value]['lucro'] = 0;
+                        }
+                    endforeach;
+                    ?>
                     <div class="card">
                     <div class="simple-card">
                         <ul class="nav nav-tabs" id="myTab5" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active border-left-0" id="home-tab-simple" data-toggle="tab" href="#home-simple" role="tab" aria-controls="home" aria-selected="true">Lancar</a>
+                                <a class="nav-link active border-left-0" id="home-tab-grafico" data-toggle="tab" href="#home-grafico" role="tab" aria-controls="home" aria-selected="true">Gráfico</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="home-tab-simple" data-toggle="tab" href="#home-simple" role="tab" aria-controls="home" aria-selected="true">Lancar</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="profile-tab-simple" data-toggle="tab" href="#profile-simple" role="tab" aria-controls="profile" aria-selected="false">Pesquisar</a>
                             </li>
                         </ul>
                         <div class="tab-content" id="myTabContent5">
-                            <div class="tab-pane fade show active" id="home-simple" role="tabpanel" aria-labelledby="home-tab-simple">
+                            <div class="tab-pane fade show active" id="home-grafico" role="tabpanel" aria-labelledby="home-tab-grafico">
+                                <div class="card">
+                                    <div id="chart"></div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade show" id="home-simple" role="tabpanel" aria-labelledby="home-tab-simple">
                             <form name="frm_cadastro" id="frm_cadastro" method="POST" onsubmit="return false">
                                 <input type="hidden" name="action" value="save_lancamento">
                                 <input type="hidden" name="id" id="id" value="">
@@ -293,10 +331,48 @@ endforeach;
             <!-- ============================================================== -->
        
         </div>
-        
-        <script>
             
+        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.8.2.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+        <script>
+
+            <?php
+            $stringJS = '[';
+            foreach($lancamentoTotal as $key => $value):
+                $stringJS .= "{ y: '{$key}', lucro: {$value['lucro']}, medio: 146.67, despesa: {$value['despesa']} },";
+            endforeach;
+            $stringJS .= ']';
+            ?>
+          $(document).ready(function() {
+            areaChart();
+
+            $(window).resize(function() {
+              window.areaChart.redraw();
+            });
+          });
+
+        function areaChart() {
+         Morris.Area({
+            element: 'chart',
+            data: <?php echo $stringJS; ?>,
+            xkey: 'y',
+            ykeys: ['lucro', 'medio', 'despesa'],
+            labels: ['Lucro', 'Lucro Medio', 'Despesa'],
+            fillOpacity: 0.4,
+            hideHover: 'auto',
+            behaveLikeLine: true,
+            resize: true,
+            pointFillColors: ['#ffffff'],
+            pointStrokeColors: ['black'],
+            lineColors: ['green', 'blue','red'],
+          });
+        }
         </script>
+        
+       
         
         <?php include_once 'api/view/footer.php';?>
         <?php include_once 'api/view/botton.php';?>
