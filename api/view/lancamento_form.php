@@ -306,7 +306,9 @@ endforeach;
                                                 
                                             ?>
                                                 <tr>
-                                                    <td><?= utf8_encode($fixo['descricao']) ?></td>
+                                                    <td><?= utf8_encode($fixo['descricao']) ?>
+                                                        <br><small><?= substr(Helper::dataToBr($fixo['dt_vencimento']), 0, 5)  ?></small>
+                                                    </td>
                                                     <td class="text-<?=$label?>"><?= $fixo['valor' ] ?></td>
                                                     <td>
                                                         <label class="be-checkbox custom-control custom-checkbox">
