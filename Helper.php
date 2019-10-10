@@ -32,4 +32,14 @@ class Helper
         $data = explode('-', $value);
         return $data[2] . '/' . $data[1] . '/' . $data[0];
     }
+    
+    public static function calcularDias($value)
+    {
+        $data = explode('-', $value);
+        if($data[2] >= date('d')){
+            return $data[2] - date('d');
+        }else{
+            return 0;
+        }
+    }
 }

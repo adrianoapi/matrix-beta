@@ -307,7 +307,7 @@ endforeach;
                                             ?>
                                                 <tr>
                                                     <td><?= utf8_encode($fixo['descricao']) ?>
-                                                        <br><small><?= substr(Helper::dataToBr($fixo['dt_vencimento']), 0, 5)  ?></small>
+                                                        <br><small><?= substr(Helper::dataToBr($fixo['dt_vencimento']), 0, 5)  ?> - <?= Helper::calcularDias($fixo['dt_vencimento']); ?></small>
                                                     </td>
                                                     <td class="text-<?=$label?>"><?= $fixo['valor' ] ?></td>
                                                     <td>
