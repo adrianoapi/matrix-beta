@@ -59,7 +59,7 @@ class ServiceLancamento
                  " FROM       `lancamentos` AS la                             ".
                  " INNER JOIN `grupos`      AS gp ON (gp.id = la.grupo_id    )".
                  " INNER JOIN `pagamentos`  AS pa ON (pa.id = la.pagamento_id)".
-                 " ORDER BY la.id DESC limit 10";
+                 " ORDER BY la.dt_lancamento DESC limit 10";
         $stmt  = $this->db->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
