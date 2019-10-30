@@ -253,6 +253,9 @@ endforeach;
                                                     <span class="ml-1 text-<?=$label?>"><?= $lancamento['valor' ] ?></span>
                                                 </td>
                                                 <td>
+                                                    <a href="#" class="btn btn-sm btn-outline-light" data-toggle="modal" data-target="#exampleModal">
+                                                        <i class="fas fa-eye"></i>
+                                                    </a>
                                                     <button class="btn btn-sm btn-outline-light" id="<?= $lancamento['id'] ?>" value="Excluir" onClick="del_row(this.id,this)">
                                                         <i class="far fa-trash-alt"></i>
                                                     </button>
@@ -269,6 +272,28 @@ endforeach;
                         </div>
                     </div>
                 </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                                <a href="#" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">×</span>
+                                                                        </a>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p>Woohoo, You are readng this text in a modal! Use Bootstrap’s JavaScript modal plugin to add dialogs to your site for lightboxes, user notifications, or completely custom content.</p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <a href="#" class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                                <a href="#" class="btn btn-primary">Save changes</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
             <!-- ============================================================== -->
             <!-- end basic media -->
             <!-- ============================================================== -->
