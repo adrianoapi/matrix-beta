@@ -253,7 +253,7 @@ endforeach;
                                                     <span class="ml-1 text-<?=$label?>"><?= $lancamento['valor' ] ?></span>
                                                 </td>
                                                 <td>
-                                                    <a href="#" class="btn btn-sm btn-outline-light" data-toggle="modal" data-target="#exampleModal">
+                                                    <a href="#" onClick="view_row(<?= $lancamento['id'] ?>)" class="btn btn-sm btn-outline-light" data-toggle="modal" data-target="#exampleModal">
                                                         <i class="fas fa-eye"></i>
                                                     </a>
                                                     <button class="btn btn-sm btn-outline-light" id="<?= $lancamento['id'] ?>" value="Excluir" onClick="del_row(this.id,this)">

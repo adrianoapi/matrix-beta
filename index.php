@@ -15,6 +15,7 @@ require_once 'Helper.php';
 $db             = new Conn("localhost");
 $login          = new Login();
 $lancamento     = new Lancamento();
+$lancamentoItem = new LancamentoItem();
 $grupo          = new Grupo();
 $pagamento      = new Pagamento();
 $lancamentoFixo = new LancamentoFixo();
@@ -22,6 +23,7 @@ $nota           = new Nota();
 
 $bojLogin          = new ServiceLogin($db, $login);
 $objLancamento     = new ServiceLancamento($db, $lancamento);
+$objLancamentoItem = new ServiceLancamentoItem($db, $lancamentoItem);
 $objGrupo          = new ServiceGrupo($db, $grupo);
 $objPagamento      = new ServicePagamento($db, $pagamento);
 $objLancamentoFixo = new ServiceLancamentoFixo($db, $lancamentoFixo);
@@ -133,6 +135,11 @@ if(isset($_COOKIE['auth'])){
                 }
                 print json_encode($returnHtml);
             }
+        }elseif($_POST['action'] == "lancamento_item_show"){
+            echo $_POST['id'];
+            $lancamentoItem->setLancamentoId($_POST['id']);
+            echo $lancamentoItem->getLancamentoId();
+            print_r($objLancamentoItem->getItensByLancamento());
         }
 
        

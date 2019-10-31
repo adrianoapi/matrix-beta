@@ -139,6 +139,19 @@
             });
         }
     }
+
+    function view_row(id)
+    {
+        console.log(id);
+        jQuery.ajax({
+            type: "POST",
+            url:  "./",
+            data: "action=lancamento_item_show&id=" + id,
+            success: function(data){
+                console.log(data);
+            }
+        });
+    }
     </script> 
 
 
