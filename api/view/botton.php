@@ -142,13 +142,33 @@
 
     function view_row(id)
     {
-        console.log(id);
         jQuery.ajax({
             type: "POST",
             url:  "./",
             data: "action=lancamento_item_show&id=" + id,
             success: function(data){
-                console.log(data);
+
+              $(".modal-body").html('<center><span class="dashboard-spinner spinner-md"></span></center>');
+
+                if(data != null){
+
+                  var table = '<table class="table table-bordered table-striped">';
+                  table += '<thead><th>Título</th><th>Qtd</th><th>Valor</th><th>Total</th></thead>';
+                  var obj = JSON.parse(data);
+                  for(var i = 0; i < obj.length; i++){
+                      table += '<tr>';
+                      table += '<td>' + obj[i]['titulo'        ] + '</td>';
+                      table += '<td>' + obj[i]['quantidade'    ] + '</td>';
+                      table += '<td>' + obj[i]['valor_unitario'] + '</td>';
+                      table += '<td>' + obj[i]['valor_total'   ] + '</td>';
+                      table += '</tr>';
+                  }
+
+                  table += '</table>';
+
+                  $(".modal-body").html(table);
+
+                }
             }
         });
     }

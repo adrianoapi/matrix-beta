@@ -135,11 +135,10 @@ if(isset($_COOKIE['auth'])){
                 }
                 print json_encode($returnHtml);
             }
-        }elseif($_POST['action'] == "lancamento_item_show"){
-            echo $_POST['id'];
+        }elseif($_POST['action'] == "lancamento_item_show")
+        {
             $lancamentoItem->setLancamentoId($_POST['id']);
-            echo $lancamentoItem->getLancamentoId();
-            print_r($objLancamentoItem->getItensByLancamento());
+            echo json_encode($objLancamentoItem->getItensByLancamento());
         }
 
        
