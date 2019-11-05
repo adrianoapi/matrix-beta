@@ -152,7 +152,7 @@ class ServiceLancamento
                  " INNER JOIN `pagamentos`   AS pg ON (pg.id = la.pagamento_id)".
                  " INNER JOIN `grupos`	     AS gp ON (gp.id = la.grupo_id) ".
                  " WHERE pg.tipo = '{$tipo}' AND pg.id != 1".
-                 " AND la.dt_lancamento >= '2019-03-01'";
+                 " AND la.dt_lancamento >= '2010-03-01'";
         $stmt  = $this->db->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);

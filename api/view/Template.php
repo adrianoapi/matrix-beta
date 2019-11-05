@@ -13,7 +13,7 @@ class Template
         return require __DIR__.'/login_form.php';
     }
     
-    public static function getFormLancamento(array $grupos, array $pagamentos, array $lancamentos, array $fixos, array $despesasCalculo, array $lucroCalculo)
+    public static function getFormLancamento(array $grupos, array $pagamentos, array $lancamentos, array $fixos, array $despesasCalculo, array $lucroCalculo, $receita, $despesa)
     {
         return require __DIR__.'/lancamento_form.php';
     }

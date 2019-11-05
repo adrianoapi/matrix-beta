@@ -161,7 +161,7 @@ if(isset($_COOKIE['auth'])){
 
     }else{
         #Template::header($objLancamentoFixo->show());
-        Template::getFormLancamento($objGrupo->show(), $objPagamento->show(), $objLancamento->show(), $objLancamentoFixo->show(), $objLancamento->despesasCalculo(), $objLancamento->lucroCalculo());
+        Template::getFormLancamento($objGrupo->show(), $objPagamento->show(), $objLancamento->show(), $objLancamentoFixo->show(), $objLancamento->despesasCalculo(), $objLancamento->lucroCalculo(), $receita, $despesa);
         #Template::getLancamento($objLancamento->show(), $receita, $despesa);
         #Template::footer();
     }
