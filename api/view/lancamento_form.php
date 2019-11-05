@@ -16,6 +16,8 @@ endforeach;
 <div class="dashboard-main-wrapper">
     
     <?php include_once 'api/view/header.php';?>
+
+
     
     <div class="dashboard-wrapper">
         <div class="container-fluid dashboard-content">
@@ -330,7 +332,22 @@ endforeach;
                                             ?>
                                                 <tr>
                                                     <td><?= utf8_encode($fixo['descricao']) ?>
-                                                        <br><small><?= substr(Helper::dataToBr($fixo['dt_vencimento']), 0, 5)  ?> - <?= Helper::calcularDias($fixo['dt_vencimento']); ?></small>
+                                                        <br><small><?= substr(Helper::dataToBr($fixo['dt_vencimento']), 0, 5)  ?> - 
+                                                            <?php 
+                                                                $dias = Helper::calcularDias($fixo['dt_vencimento']); 
+                                                                if($dias > 0 && $dias < 5){
+                                                                    echo '<span class="icon-circle-small icon-box-xs text-danger bg-danger-light bg-danger-light ">'.$dias.'</span>';
+                                                                }else{
+                                                                    if(!$fixo['pago' ] && $dias == 0){
+                                                                        echo '<span class="icon-circle-small icon-box-xs text-danger bg-danger-light bg-danger-light ">'.$dias.'</span>';
+                                                                    }else{
+                                                                        echo $dias;
+                                                                    }
+                                                                    
+                                                                }
+                                                            ?>
+                                                                
+                                                            </small>
                                                     </td>
                                                     <td class="text-<?=$label?>"><?= $fixo['valor' ] ?></td>
                                                     <td>

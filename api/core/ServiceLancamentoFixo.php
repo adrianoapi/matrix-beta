@@ -16,7 +16,7 @@ class ServiceLancamentoFixo
     
     public function show()
     {
-        $query = "SELECT * FROM `lancamento_fixo` ORDER BY id DESC";
+        $query = "SELECT * FROM `lancamento_fixo` ORDER BY `lancamento_fixo`.`dt_vencimento` ASC";
         $stmt  = $this->db->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
