@@ -138,7 +138,11 @@ if(isset($_COOKIE['auth'])){
         }elseif($_POST['action'] == "lancamento_item_show")
         {
             $lancamentoItem->setLancamentoId($_POST['id']);
-            echo json_encode($objLancamentoItem->getItensByLancamento());
+            $data = $objLancamentoItem->getItensByLancamento();
+            foreach ($data as $key => $value) {
+                $data[$key]['titulo'] = utf8_encode($value['titulo']);
+            }
+            echo json_encode($data);
         }
 
        

@@ -148,6 +148,8 @@
             data: "action=lancamento_item_show&id=" + id,
             success: function(data){
 
+              console.log(data);
+
               $(".modal-body").html('<center><span class="dashboard-spinner spinner-md"></span></center>');
 
                 if(data != null){
