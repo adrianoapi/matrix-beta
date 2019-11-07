@@ -251,7 +251,7 @@ endforeach;
                                         ?>
                                             <tr>
                                                 <td><?= substr(Helper::dataToBr($lancamento['dt_lancamento']), 0, 5) ?></td>
-                                                <td><span title="<?= utf8_encode($lancamento['descricao']) ?>"><?= utf8_encode($lancamento['grupo']) ?></span></td>
+                                                <td><span title="<?= utf8_encode($lancamento['descricao']) ?>"><?= utf8_encode($lancamento['grupo']) ?> <?= $lancamento['itens' ] > 0 ? 'itens ('. $lancamento['itens' ] .')' : '' ?></span></td>
                                                 <td>
                                                     <span class="icon-circle-small icon-box-xs text-<?=$label?> ml-4 bg-<?=$label?>-light">
                                                         <i class="fa fa-fw fa-arrow-<?=$posic?>"></i>

@@ -55,11 +55,11 @@ class ServiceLancamento
      */
     public function show()
     {
-        $query = " SELECT la.*, gp.titulo AS grupo, pa.titulo AS pagamento    ".
-                 " FROM       `lancamentos` AS la                             ".
-                 " INNER JOIN `grupos`      AS gp ON (gp.id = la.grupo_id    )".
-                 " INNER JOIN `pagamentos`  AS pa ON (pa.id = la.pagamento_id)".
-                 " ORDER BY la.dt_lancamento DESC limit 10";
+        $query = "SELECT la.*, (SELECT COUNT(*) FROM lancamentos_item WHERE lancamento_id = la.id) as itens, gp.titulo AS grupo, pa.titulo AS pagamento
+            FROM       `lancamentos` AS la                             
+            INNER JOIN `grupos`      AS gp ON (gp.id = la.grupo_id    )
+            INNER JOIN `pagamentos`  AS pa ON (pa.id = la.pagamento_id)
+            ORDER BY la.dt_lancamento DESC limit 10";
         $stmt  = $this->db->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
