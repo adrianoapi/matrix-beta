@@ -12,11 +12,11 @@ require_once 'Helper.php';
  *
  */
 
-$db             = new Conn("localhost", "matrix", "adriano", "201187");
-$login          = new Login();
-$colecaoItem    = new ColecaoItem();
+$db          = new Conn("localhost", "matrix", "adriano", "201187");
+$login       = new Login();
+$linkItem    = new linkItem();
 
-$bojColecaoItem = new ServiceColecaoItem($db, $colecaoItem);
+$objLinkItem 	= new ServiceLinkItem($db, $linkItem);
 
 $visible = FALSE;
 
@@ -43,19 +43,30 @@ if(!isset($_COOKIE['auth'])){
 if(isset($_COOKIE['auth'])){
 
 	#echo "colecao <img src=\"/public/img/75.jpg\">";
-	$revistas = $bojColecaoItem->show();
+	$revistas = $objLinkItem->show();
 	
 	$noImg = array();
 		
+	echo '<table border="1">';
+
+	$old = NULL;
+	$categoria = NULL;
+	$i=0;
 	foreach($revistas as $revista):
-		
-		if (file_exists('./public/img/'.$revista['id'].'.jpg')) {
-			echo '<img src="/public/img/'.$revista['id'].'.jpg" width="160" height="240">';
-		}else{
-			$noImg = array_merge($revista, $noImg);
+
+		if($revista['categoria_titulo'] == $old){
+			$i++;
 		}
-		
+
+		$categoria = $revista['categoria_titulo'] == $old ? '' : $revista['categoria_titulo'];
+		$old = $revista['categoria_titulo'];
+		echo '<tr>';
+		echo '<td>'.$categoria.'</td>';
+		echo '<td><a href="'.$revista['url'].'" target="_blank">'.$revista['titulo'].'</a></td>';
+		echo '</tr>';
 	endforeach;
+
+	echo '</table>';
 	
 	echo "<pre>";
 	print_r($noImg);

@@ -12,7 +12,7 @@ require_once 'Helper.php';
  *
  */
 
-$db             = new Conn("localhost");
+$db             = new Conn("localhost", "matrix", "adriano", "201187");
 $login          = new Login();
 $lancamento     = new Lancamento();
 $lancamentoItem = new LancamentoItem();
@@ -146,7 +146,7 @@ if(isset($_COOKIE['auth'])){
         }
 
        
-    }elseif($_GET['module']){
+    }elseif(@$_GET['module']){
         if($_GET['module'] == 'nota'){
             if($_GET['action']){
                 if($_GET['action'] == 'view'){

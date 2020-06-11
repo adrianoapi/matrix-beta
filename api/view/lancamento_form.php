@@ -219,8 +219,22 @@ endforeach;
                                         <thead class=" text-primary">
                                         <thead>
                                             <tr>
-                                                <th colspan="2" scope="col">Receita: R$ <?php echo number_format($receita[0][total], 2, ',', '.'); ?></th>
-                                                <th colspan="2" scope="col">Despesa: R$ <?php echo number_format($despesa[0][total], 2, ',', '.'); ?></th>
+                                                <th colspan="2" scope="col">Receita: R$ 
+                                                    <?php 
+                                                    if(count($receita) > 0){
+                                                        #echo number_format($receita[0][total], 2, ',', '.');
+                                                    }
+                                                     ?>
+                                                        
+                                                    </th>
+                                                <th colspan="2" scope="col">Despesa: R$ 
+                                                    <?php 
+                                                    if(count($despesa) > 0){
+                                                        #echo number_format($despesa[0][total], 2, ',', '.');
+                                                    }
+                                                     ?>
+                                                        
+                                                    </th>
                                             </tr>
                                             <tr>
                                                 <th scope="col">Data</th>
